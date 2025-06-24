@@ -7,7 +7,7 @@ The backend for the Airbnb Clone project is designed to provide a robust and sca
 # tech-stack
 Some tools for this project are django, graphQL, gitaction, postgressSql.
 
-# team-roles
+# Team Roles
 
     backend-developer
         Ensures that the application has reliable business logic, handles user requests efficiently, and securely manages data communication between frontend and backend layers.
