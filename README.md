@@ -44,3 +44,29 @@ Some tools for this project are django, graphQL, gitaction, postgressSql.
         Collaborates with developers to resolve bugs and ensure new features don’t introduce regressions.
 
 
+# Technology Stack
+This project uses the following technologies to build, run, and maintain the backend system:
+
+    Django
+        A high-level Python web framework used for building robust and scalable RESTful APIs, handling core backend logic, and managing the overall application structure.
+
+    Django REST Framework (DRF)
+        An extension of Django that provides a powerful toolkit for building and managing RESTful APIs, including authentication, serialization, and request/response handling.
+
+    PostgreSQL
+        A powerful open-source relational database system used to store and manage structured data efficiently and securely.
+
+    GraphQL
+        A query language for APIs that allows clients to request exactly the data they need, improving flexibility and reducing over-fetching or under-fetching of data
+
+    Celery
+        An asynchronous task queue used to handle background tasks such as sending notifications, processing long-running jobs, or managing scheduled tasks.
+
+    Redis
+        An in-memory data structure store used for caching, session management, and as a message broker for Celery tasks to ensure fast performance.
+
+    Docker
+        A containerization tool used to package the application and its dependencies into isolated environments, ensuring consistency across development, staging, and production.
+
+    CI/CD Pipelines
+        Automated workflows for testing, building, and deploying code changes to ensure fast, reliable, and repeatable delivery to production environments.
