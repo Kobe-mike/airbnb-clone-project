@@ -70,3 +70,84 @@ This project uses the following technologies to build, run, and maintain the bac
 
     CI/CD Pipelines
         Automated workflows for testing, building, and deploying code changes to ensure fast, reliable, and repeatable delivery to production environments.
+
+# Database Design
+U
+    Users
+Represents all users of the platform including property owners and guests.
+Important Fields:
+
+id: Unique identifier for the user.
+name: Full name of the user.
+email: User's email address (used for login).
+role: Specifies if the user is a host or guest.
+created_at: Timestamp of when the user registered.
+
+Relationships:
+A user can list multiple properties.
+A user can make multiple bookings.
+A user can write multiple reviews.
+
+2. Properties
+Represents a real estate listing available for booking.
+
+Important Fields:
+id: Unique identifier for the property.
+owner_id: Foreign key to the Users table (host).
+title: Name of the property.
+location: Address or city of the property.
+price_per_night: Cost per night.
+
+Relationships:
+A property belongs to a user (host).
+A property can have many bookings.
+A property can have multiple reviews.
+
+3. Bookings
+Represents a reservation made by a guest for a property.
+
+Important Fields:
+id: Unique identifier for the booking.
+user_id: Foreign key to the guest (User).
+property_id: Foreign key to the Property.
+start_date: Check-in date.
+end_date: Check-out date.
+
+Relationships:
+A booking belongs to a user (guest).
+A booking is linked to one property.
+A booking can have one payment record.
+
+4. Reviews
+Allows users to leave feedback on properties after a stay.
+
+Important Fields:
+id: Unique identifier for the review.
+user_id: Foreign key to the reviewer.
+property_id: Foreign key to the reviewed property.
+rating: Numerical rating (e.g., 1–5).
+comment: Optional text feedback.
+
+Relationships:
+A review belongs to a user.
+A review is linked to one property.
+
+5. Payments
+Tracks payment details related to a booking.
+
+Important Fields:
+id: Unique payment record identifier.
+booking_id: Foreign key to the Booking.
+amount: Total payment amount.
+payment_status: e.g., pending, completed, failed.
+timestamp: Date and time of payment.
+
+Relationships:
+A payment belongs to one booking.
+Entity Relationships Summary:
+User ⇨ Property: One-to-Many
+User ⇨ Booking: One-to-Many
+Property ⇨ Booking: One-to-Many
+Property ⇨ Review: One-to-Many
+Booking ⇨ Payment: One-to-One
+
