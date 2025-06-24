@@ -72,8 +72,7 @@ This project uses the following technologies to build, run, and maintain the bac
         Automated workflows for testing, building, and deploying code changes to ensure fast, reliable, and repeatable delivery to production environments.
 
 # Database Design
-U
-    Users
+   Users
 Represents all users of the platform including property owners and guests.
 Important Fields:
 
@@ -88,7 +87,7 @@ A user can list multiple properties.
 A user can make multiple bookings.
 A user can write multiple reviews.
 
-2. Properties
+Properties
 Represents a real estate listing available for booking.
 
 Important Fields:
@@ -103,7 +102,7 @@ A property belongs to a user (host).
 A property can have many bookings.
 A property can have multiple reviews.
 
-3. Bookings
+ Bookings
 Represents a reservation made by a guest for a property.
 
 Important Fields:
@@ -118,7 +117,7 @@ A booking belongs to a user (guest).
 A booking is linked to one property.
 A booking can have one payment record.
 
-4. Reviews
+ Reviews
 Allows users to leave feedback on properties after a stay.
 
 Important Fields:
@@ -132,7 +131,7 @@ Relationships:
 A review belongs to a user.
 A review is linked to one property.
 
-5. Payments
+Payments
 Tracks payment details related to a booking.
 
 Important Fields:
