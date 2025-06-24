@@ -63,7 +63,7 @@ This project uses the following technologies to build, run, and maintain the bac
         An asynchronous task queue used to handle background tasks such as sending notifications, processing long-running jobs, or managing scheduled tasks.
 
     Redis
-        An in-memory data structure store used for caching, session management, and as a message broker for Celery tasks to ensure fast performance.
+         An in-memory data structure store used for caching, session management, and as a message broker for Celery tasks to ensure fast performance.
 
     Docker
         A containerization tool used to package the application and its dependencies into isolated environments, ensuring consistency across development, staging, and production.
@@ -72,81 +72,102 @@ This project uses the following technologies to build, run, and maintain the bac
         Automated workflows for testing, building, and deploying code changes to ensure fast, reliable, and repeatable delivery to production environments.
 
 # Database Design
-   Users
-Represents all users of the platform including property owners and guests.
-Important Fields:
+    Users
+        Represents all users of the platform including property owners and guests.
+        Important Fields:
 
-id: Unique identifier for the user.
-name: Full name of the user.
-email: User's email address (used for login).
-role: Specifies if the user is a host or guest.
-created_at: Timestamp of when the user registered.
+        id: Unique identifier for the user.
+        name: Full name of the user.
+        email: User's email address (used for login).
+        role: Specifies if the user is a host or guest.
+        created_at: Timestamp of when the user registered.
 
-Relationships:
-A user can list multiple properties.
-A user can make multiple bookings.
-A user can write multiple reviews.
+        Relationships:
+        A user can list multiple properties.
+        A user can make multiple bookings.
+        A user can write multiple reviews.
 
-Properties
-Represents a real estate listing available for booking.
+    Properties
+        Represents a real estate listing available for booking.
 
-Important Fields:
-id: Unique identifier for the property.
-owner_id: Foreign key to the Users table (host).
-title: Name of the property.
-location: Address or city of the property.
-price_per_night: Cost per night.
+        Important Fields:
+        id: Unique identifier for the property.
+        owner_id: Foreign key to the Users table (host).
+        title: Name of the property.
+        location: Address or city of the property.
+        price_per_night: Cost per night.
 
-Relationships:
-A property belongs to a user (host).
-A property can have many bookings.
-A property can have multiple reviews.
+        Relationships:
+        A property belongs to a user (host).
+        A property can have many bookings.
+        A property can have multiple reviews.
 
- Bookings
-Represents a reservation made by a guest for a property.
+    Bookings
+        Represents a reservation made by a guest for a property.
 
-Important Fields:
-id: Unique identifier for the booking.
-user_id: Foreign key to the guest (User).
-property_id: Foreign key to the Property.
-start_date: Check-in date.
-end_date: Check-out date.
+        Important Fields:
+        id: Unique identifier for the booking.
+        user_id: Foreign key to the guest (User).
+        property_id: Foreign key to the Property.
+        start_date: Check-in date.
+        end_date: Check-out date.
 
-Relationships:
-A booking belongs to a user (guest).
-A booking is linked to one property.
-A booking can have one payment record.
+        Relationships:
+        A booking belongs to a user (guest).
+        A booking is linked to one property.
+        A booking can have one payment record.
 
- Reviews
-Allows users to leave feedback on properties after a stay.
+    Reviews
+        Allows users to leave feedback on properties after a stay.
 
-Important Fields:
-id: Unique identifier for the review.
-user_id: Foreign key to the reviewer.
-property_id: Foreign key to the reviewed property.
-rating: Numerical rating (e.g., 1–5).
-comment: Optional text feedback.
+        Important Fields:
+        id: Unique identifier for the review.
+        user_id: Foreign key to the reviewer.
+        property_id: Foreign key to the reviewed property.
+        rating: Numerical rating (e.g., 1–5).
+        comment: Optional text feedback.
 
-Relationships:
-A review belongs to a user.
-A review is linked to one property.
+        Relationships:
+        A review belongs to a user.
+        A review is linked to one property.
 
-Payments
-Tracks payment details related to a booking.
+    Payments
+        Tracks payment details related to a booking.
 
-Important Fields:
-id: Unique payment record identifier.
-booking_id: Foreign key to the Booking.
-amount: Total payment amount.
-payment_status: e.g., pending, completed, failed.
-timestamp: Date and time of payment.
+        Important Fields:
+        id: Unique payment record identifier.
+        booking_id: Foreign key to the Booking.
+        amount: Total payment amount.
+        payment_status: e.g., pending, completed, failed.
+        timestamp: Date and time of payment.
 
-Relationships:
-A payment belongs to one booking.
-Entity Relationships Summary:
-User ⇨ Property: One-to-Many
-User ⇨ Booking: One-to-Many
-Property ⇨ Booking: One-to-Many
-Property ⇨ Review: One-to-Many
-Booking ⇨ Payment: One-to-One
+        Relationships:
+        A payment belongs to one booking.
+        Entity Relationships Summary:
+        User ⇨ Property: One-to-Many
+        User ⇨ Booking: One-to-Many
+        Property ⇨ Booking: One-to-Many
+        Property ⇨ Review: One-to-Many
+        Booking ⇨ Payment: One-to-One
 
+
+    API Documentation
+        The backend APIs are documented using the OpenAPI standard to promote clarity and ease of integration for third-party developers. Both REST and GraphQL endpoints are available, with Django REST Framework supporting structured CRUD operations and GraphQL providing more flexible data querying.
+
+    User Authentication
+        Users can register, log in, and manage their profiles via endpoints like /users/ and /users/{user_id}/. This feature ensures secure access control and personalized experiences for guests and hosts.
+
+    Property Management
+        Through endpoints such as /properties/ and /properties/{property_id}/, users (hosts) can create, update, retrieve, and delete property listings. This feature enables hosts to manage their rentals and guests to browse available properties.
+
+    Booking System
+        The booking feature allows users to reserve properties, manage their bookings, and handle check-in/check-out information. Endpoints like /bookings/ and /bookings/{booking_id}/ enable smooth interaction between guests and hosts.
+
+    Payment Processing
+        Payment transactions are handled securely through the /payments/ endpoint. This feature ensures that users can pay for bookings efficiently and that transactions are tracked and validated.
+
+    Review System
+        Guests can leave feedback on properties via /reviews/ and /reviews/{review_id}/. This fosters trust within the platform by allowing users to share experiences and hosts to improve their service based on reviews.
+
+    Database Optimizations
+        The system implements indexing on frequently queried fields for faster data access and uses caching to reduce database load and enhance performance. These optimizations ensure the platform remains responsive under heavy usage.
