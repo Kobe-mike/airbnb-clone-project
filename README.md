@@ -151,6 +151,7 @@ This project uses the following technologies to build, run, and maintain the bac
         Booking ⇨ Payment: One-to-One
 
 
+# Feature Breakdown
     API Documentation
         The backend APIs are documented using the OpenAPI standard to promote clarity and ease of integration for third-party developers. Both REST and GraphQL endpoints are available, with Django REST Framework supporting structured CRUD operations and GraphQL providing more flexible data querying.
 
