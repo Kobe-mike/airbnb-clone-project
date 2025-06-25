@@ -172,3 +172,29 @@ This project uses the following technologies to build, run, and maintain the bac
 
     Database Optimizations
         The system implements indexing on frequently queried fields for faster data access and uses caching to reduce database load and enhance performance. These optimizations ensure the platform remains responsive under heavy usage.
+
+# API Security
+    Authentication
+        The project uses token-based authentication (e.g., JWT or Django Token Auth) to verify user identity for accessing protected endpoints. Only authenticated users can perform sensitive operations like making bookings or posting reviews.
+
+        Why it matters: Prevents unauthorized access to user accounts and ensures that only verified users can interact with the system.
+
+    Authorization
+        Role-based access control (RBAC) is enforced to restrict access based on user roles (e.g., guest vs. host). For instance, only property owners can modify their listings, and only guests can book properties.
+
+        Why it matters: Ensures users can only perform actions permitted by their role, reducing the risk of data tampering or misuse.
+
+    Rate Limiting
+        Rate limiting is applied to all public-facing APIs to prevent abuse and denial-of-service (DoS) attacks. Tools like Django Ratelimit or API gateways are used to throttle requests from a single IP or user.
+
+        Why it matters: Protects the backend from being overwhelmed by excessive or malicious requests.
+
+    Data Encryption
+        All data transmission is secured using HTTPS with SSL/TLS encryption. Sensitive information such as passwords and payment data is stored securely and never transmitted in plain text.
+
+        Why it matters: Protects sensitive data from being intercepted or exposed during transmission or at rest.
+
+    Input Validation & Sanitization
+        All user input is validated and sanitized to prevent SQL injection, XSS attacks, and other common vulnerabilities. Backend validations complement frontend checks to ensure system integrity.
+
+        Why it matters: Maintains data integrity and protects the system from injection-based exploits and corrupted data entries.
