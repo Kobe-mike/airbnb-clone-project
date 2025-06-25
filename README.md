@@ -198,3 +198,16 @@ This project uses the following technologies to build, run, and maintain the bac
         All user input is validated and sanitized to prevent SQL injection, XSS attacks, and other common vulnerabilities. Backend validations complement frontend checks to ensure system integrity.
 
         Why it matters: Maintains data integrity and protects the system from injection-based exploits and corrupted data entries.
+
+
+# CI/CD Pipeline
+
+    Continuous Integration (CI) and Continuous Deployment (CD) pipelines are automated workflows that build, test, and deploy code changes. They ensure that every update pushed to the repository is automatically validated and deployed in a reliable, consistent manner.
+
+    CI/CD pipelines help:
+        Catch bugs early through automated testing.
+        Streamline deployment processes and reduce manual errors.
+        Maintain consistent development, staging, and production environments.
+        Improve collaboration and accelerate delivery of new features.
+
+    Tools used: GitHub Actions, Docker, Celery + Redis, PostgreSQL, Cloud platforms.
