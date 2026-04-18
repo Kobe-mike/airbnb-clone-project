@@ -34,6 +34,31 @@ app.get('/api/auth/login', (req, res) => {
   res.json({ message: 'Auth login endpoint' });
 });
 
+// Test DB schema/query
+app.get('/api/test-query', async (req, res) => {
+  try {
+    const connection = await pool.getConnection();
+    
+    // Get tables
+    const [tables] = await connection.execute('SHOW TABLES');
+    const tableNames = tables.map(t => Object.values(t)[0]);
+    
+    // Count rows in key tables
+    const [users] = await connection.execute('SELECT COUNT(*) as count FROM users');
+    const [properties] = await connection.execute('SELECT COUNT(*) as count FROM properties');
+    
+    connection.release();
+    
+    res.json({
+      tables: tableNames,
+      users: users[0].count,
+      properties: properties[0].count
+    });
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
