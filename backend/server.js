@@ -3,6 +3,9 @@ import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
 import pool from './config/database.js';
+import authRoutes from './routes/auth.js';
+import listingsRoutes from './routes/listings.js';
+import bookingsRoutes from './routes/bookings.js';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -25,14 +28,12 @@ app.get('/health', async (req, res) => {
   }
 });
 
-// Placeholder routes for Airbnb features
-app.get('/api/listings', (req, res) => {
-  res.json({ message: 'Listings endpoint - implement in routes/' });
-});
+// API Routes
+app.use('/api/auth', authRoutes);
+app.use('/api/listings', listingsRoutes);
+app.use('/api/bookings', bookingsRoutes);
 
-app.get('/api/auth/login', (req, res) => {
-  res.json({ message: 'Auth login endpoint' });
-});
+// Placeholder routes for Airbnb features (removed - implemented in routes/)
 
 // Test DB schema/query
 app.get('/api/test-query', async (req, res) => {
