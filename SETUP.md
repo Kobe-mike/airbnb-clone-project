@@ -287,7 +287,7 @@ Create `backend/config/jwt.js`:
 module.exports = {
   secret: process.env.JWT_SECRET,
   options: {
-    expiresIn: process.env.JWT_EXPIRE || '7d',
+    expiresIn: process.env.JWT_EXPIRE || '21d',
     algorithm: 'HS256'
   }
 };
