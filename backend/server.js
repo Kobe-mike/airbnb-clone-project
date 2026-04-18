@@ -1,25 +1,25 @@
 require('dotenv').config();
-const express = require('express');
-const cors = require('cors');
-const path = require('path');
-const db = require('./config/database');
+import express, { json, urlencoded, static } from 'express';
+import cors from 'cors';
+import { join } from 'path';
+import { getConnection } from './config/database';
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // Middleware
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(json());
+app.use(urlencoded({ extended: true }));
 
 // Static files (for frontend)
-app.use('/client', express.static(path.join(__dirname, '../frontend/client')));
-app.use('/admin', express.static(path.join(__dirname, '../frontend/admin')));
+app.use('/client', static(join(__dirname, '../frontend/client')));
+app.use('/admin', static(join(__dirname, '../frontend/admin')));
 
 // Test DB connection
 app.get('/api/health', async (req, res) => {
   try {
-    const connection = await db.getConnection();
+    const connection = await getConnection();
     await connection.ping();
     connection.release();
     res.json({ 
@@ -59,7 +59,7 @@ app.use((err, req, res, next) => {
 // Test DB connection on startup
 const testConnection = async () => {
   try {
-    const connection = await db.getConnection();
+    const connection = await getConnection();
     console.log('✅ Database connected successfully');
     connection.release();
   } catch (error) {
@@ -70,8 +70,8 @@ const testConnection = async () => {
 testConnection();
 
 app.listen(PORT, () => {
-  console.log(`🚀 Server running on http://localhost:${PORT}`);
-  console.log(`📊 Health check: http://localhost:${PORT}/api/health`);
+  console.log(`Server running on http://localhost:${PORT}`);
+  console.log(`Health check: http://localhost:${PORT}/api/health`);
 });
 
-module.exports = app;
+export default app;
