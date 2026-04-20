@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghana Stay - Sign In / Sign Up</title>
+    <link rel="stylesheet" href="css/auth.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<div class="auth-container active" id="authContainer">
+    <!-- Sign In Form (Left Panel) -->
+    <div class="form-container sign-in-container">
+        <form class="auth-form" id="signInForm">
+            <h1 class="auth-title">Sign In</h1>
+
+            <div class="social-icons">
+                <a href="#" class="social-icon facebook" title="Facebook">f</a>
+                <a href="#" class="social-icon google" title="Google">G</a>
+                <a href="#" class="social-icon linkedin" title="LinkedIn">in</a>
+            </div>
+
+            <span class="auth-label">or use your account</span>
+
+            <input type="email" class="auth-input" placeholder="Email" required />
+            <input type="password" class="auth-input" placeholder="Password" required />
+
+            <a href="#" class="forgot-password">Forgot your password?</a>
+
+            <button type="submit" class="auth-button">Sign In</button>
+        </form>
+    </div>
+
+    <!-- Sign Up Form (Right Panel) -->
+    <div class="form-container sign-up-container">
+        <form class="auth-form" id="signUpForm">
+            <h1 class="auth-title">Create Account</h1>
+
+            <div class="social-icons">
+                <a href="#" class="social-icon facebook" title="Facebook">f</a>
+                <a href="#" class="social-icon google" title="Google">G</a>
+                <a href="#" class="social-icon linkedin" title="LinkedIn">in</a>
+            </div>
+
+            <span class="auth-label">or use your email for registration</span>
+
+            <input type="text" class="auth-input" placeholder="Name" required />
+            <input type="email" class="auth-input" placeholder="Email" required />
+            <input type="password" class="auth-input" placeholder="Password" required />
+
+            <button type="submit" class="auth-button">Sign Up</button>
+        </form>
+    </div>
+
+    <!-- Overlay / Ghost Panel -->
+    <div class="overlay-container">
+        <!-- Sign In Overlay -->
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1 class="overlay-title">Welcome Back!</h1>
+                <p class="overlay-text">Keep connected with us, please login with your personal info</p>
+                <button class="auth-button ghost" id="signInBtn">Sign In</button>
+            </div>
+
+            <!-- Sign Up Overlay -->
+            <div class="overlay-panel overlay-right">
+                <h1 class="overlay-title">Hello, Friend!</h1>
+                <p class="overlay-text">Enter your personal details and start your journey with us</p>
+                <button class="auth-button ghost" id="signUpBtn">Sign Up</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Close Button -->
+    <button class="auth-close" id="authClose">&times;</button>
+</div>
+
+<!-- Backdrop -->
+<div class="auth-backdrop active" id="authBackdrop"></div>
+
+<script src="js/auth.js"></script>
+<script>
+  // Auto-initialize auth manager on page load
+  document.addEventListener('DOMContentLoaded', () => {
+    new AuthManager();
+  });
+</script>
+</body>
+</html>

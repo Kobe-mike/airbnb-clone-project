@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ghana Stay - Premium Accommodation Booking</title>
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=DM+Serif+Display:wght@400;500&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- STICKY NAVIGATION -->
+<nav class="navbar" id="navbar">
+    <div class="navbar__container">
+        <div class="navbar__left">
+            <button class="navbar__hamburger" id="hamburger"><span></span><span></span><span></span></button>
+            <ul class="navbar__links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Us</a></li>
+                <li class="navbar__dropdown-item">
+                    <a href="#stays">Stays</a>
+                    <ul class="navbar__dropdown">
+                        <li><a href="#">Rooms</a></li>
+                        <li><a href="#">Villas</a></li>
+                        <li><a href="#">Chalets</a></li>
+                        <li><a href="#">Eco Lodges</a></li>
+                        <li><a href="#">Heritage</a></li>
+                    </ul>
+                </li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+            </ul>
+        </div>
+        <div class="navbar__center"><a href="#" class="navbar__logo" title="Logo">🏛️</a></div>
+        <div class="navbar__right">
+            <button class="btn btn--ghost btn--sm" id="login-btn">Log In</button>
+            <button class="btn btn--primary btn--sm">Contact</button>
+        </div>
+    </div>
+    <div class="navbar__drawer" id="navbar-drawer">
+        <button class="navbar__close" id="drawer-close">&times;</button>
+        <ul class="navbar__drawer-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About Us</a></li>
+            <li><a href="#stays">Stays</a></li>
+            <li><a href="#services">Services</a></li>
+            <li><a href="#pricing">Pricing</a></li>
+            <li><button class="btn btn--ghost btn--sm btn--full">Log In</button></li>
+            <li><button class="btn btn--primary btn--sm btn--full">Contact</button></li>
+        </ul>
+    </div>
+</nav>
+
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+    <div class="hero__left">
+        <div class="hero__overlay"></div>
+        <div class="hero__content">
+            <span class="hero__badge">★ 4.8 Rating — Trusted by Ghana Tourism Authority</span>
+            <h1 class="hero__headline">Find Your Perfect Stay<br><span>Across Ghana</span></h1>
+            <p class="hero__subheadline">Discover premium accommodations across Ghana, from beachfront retreats to heritage hotels</p>
+            <div class="hero__buttons">
+                <button class="btn btn--primary">Explore Stays</button>
+                <button class="btn btn--ghost">Log In</button>
+            </div>
+        </div>
+        <div class="hero__scroll-cue"><svg width="24" height="24" viewBox="0 0 24 24"><path d="M12 5v14M5 16l7 7 7-7" stroke="currentColor" fill="none" stroke-width="2"/></svg></div>
+    </div>
+    <div class="hero__right">
+        <form class="booking-widget" id="booking-form">
+            <h2 class="booking-widget__title">Plan Your Visit</h2>
+            <div class="form-group">
+                <label for="location">Location</label>
+                <select id="location" class="form-control">
+                    <option value="">Select city</option>
+                    <option value="accra">Accra</option>
+                    <option value="kumasi">Kumasi</option>
+                    <option value="cape-coast">Cape Coast</option>
+                    <option value="tamale">Tamale</option>
+                    <option value="ho">Ho</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="checkin">Check-in</label>
+                <input type="date" id="checkin" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="checkout">Check-out</label>
+                <input type="date" id="checkout" class="form-control">
+            </div>
+            <div class="form-group">
+                <label>Guests</label>
+                <div class="guests-stepper">
+                    <button type="button" class="stepper-btn">−</button>
+                    <input type="number" id="guests" value="1" min="1" readonly class="form-control stepper-input">
+                    <button type="button" class="stepper-btn">+</button>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Type</label>
+                <div class="accommodation-pills">
+                    <button type="button" class="pill" data-type="all">All</button>
+                    <button type="button" class="pill" data-type="room">Room</button>
+                    <button type="button" class="pill" data-type="villa">Villa</button>
+                    <button type="button" class="pill" data-type="eco">Eco</button>
+                </div>
+            </div>
+            <button type="submit" class="btn btn--primary btn--full">Search</button>
+        </form>
+    </div>
+</section>
+
+<!-- TRUSTED BY -->
+<section class="trusted-strip">
+    <div class="trusted-strip__container">
+        <span class="trusted-strip__label">Trusted by</span>
+        <div class="trusted-strip__logos-wrapper">
+            <div class="trusted-strip__logos">
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+                <div class="trusted-logo"><div class="trusted-logo__placeholder">140x40</div></div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FEATURED STAYS -->
+<section class="featured-stays">
+    <div class="featured-stays__container">
+        <span class="featured-stays__tag">Featured Stays</span>
+        <h2 class="featured-stays__heading">Handpicked experiences across Ghana</h2>
+        <div class="featured-stays__grid">
+            <article class="featured-card featured-card--large">
+                <div class="featured-card__image">
+                    <span class="image-dimension">600x800</span>
+                </div>
+                <div class="featured-card__overlay"></div>
+                <button class="featured-card__save">♡</button>
+                <div class="featured-card__content">
+                    <p class="featured-card__location">● East Legon, Accra</p>
+                    <h3 class="featured-card__name">Luxury Beachfront Villa</h3>
+                    <div class="featured-card__price">GHS 850/night</div>
+                </div>
+            </article>
+            <article class="featured-card featured-card--small">
+                <div class="featured-card__image">
+                    <span class="image-dimension">700x500</span>
+                </div>
+                <div class="featured-card__overlay"></div>
+                <button class="featured-card__save">♡</button>
+                <div class="featured-card__content">
+                    <p class="featured-card__location">● Cape Coast</p>
+                    <h3 class="featured-card__name">Heritage Hotel</h3>
+                    <div class="featured-card__price">GHS 620/night</div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>
+
+<!-- PROPERTY GRID & FILTER -->
+<section class="property-grid-section">
+    <div class="property-grid-section__container">
+        <div class="accommodation-filter">
+            <button class="filter-pill active" data-type="all">All</button>
+            <button class="filter-pill" data-type="room">Rooms</button>
+            <button class="filter-pill" data-type="villa">Villa</button>
+            <button class="filter-pill" data-type="eco">Eco</button>
+            <button class="filter-pill" data-type="heritage">Heritage</button>
+        </div>
+        <div class="property-grid" id="property-grid"></div>
+        <div class="grid-load-more">
+            <button class="btn btn--ghost">Load More</button>
+        </div>
+    </div>
+</section>
+
+<!-- CATEGORY SHOWCASE -->
+<section class="category-showcase">
+    <div class="category-showcase__container">
+        <div class="category-card">
+            <div class="category-card__overlay"></div>
+            <h3 class="category-card__name">Beach Retreats</h3>
+            <p class="category-card__price">From GHS 1,200/night</p>
+        </div>
+        <div class="category-card">
+            <div class="category-card__overlay"></div>
+            <h3 class="category-card__name">Eco Lodges</h3>
+            <p class="category-card__price">From GHS 850/night</p>
+        </div>
+        <div class="category-card">
+            <div class="category-card__overlay"></div>
+            <h3 class="category-card__name">Heritage Hotels</h3>
+            <p class="category-card__price">From GHS 950/night</p>
+        </div>
+    </div>
+</section>
+
+<!-- VALUE PROPOSITION -->
+<section class="value-proposition">
+    <div class="value-proposition__container">
+        <div class="value-proposition__left">
+            <span class="section-tag">Why Choose Us</span>
+            <div class="star-rating"><span class="stars">★★★★★</span> <span class="rating-value">(4.8/5)</span></div>
+            <h2 class="value-proposition__heading">Economically Sound and Genuinely Ghanaian Hospitality</h2>
+            <p class="value-proposition__text">Experience authentic Ghanaian hospitality combined with world-class amenities. We handpick every property to ensure your stay exceeds expectations.</p>
+            <button class="btn btn--primary">Explore All</button>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <div class="amenity-icon">💰</div>
+                    <h4>Very Affordable</h4>
+                    <p>from GHS 350/night</p>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">⚡</div>
+                    <h4>Generator Backup</h4>
+                    <p>24/7 Power</p>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🚗</div>
+                    <h4>Valet Service</h4>
+                    <p>on request</p>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">🍽️</div>
+                    <h4>Room Service</h4>
+                    <p>24/7</p>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">📡</div>
+                    <h4>High-Speed Internet</h4>
+                    <p>100mbps+</p>
+                </div>
+                <div class="amenity-item">
+                    <div class="amenity-icon">❄️</div>
+                    <h4>Air Conditioning</h4>
+                    <p>all rooms</p>
+                </div>
+            </div>
+        </div>
+        <div class="value-proposition__right">
+            <div class="gallery-collage">
+                <div class="gallery-img gallery-img--tall"></div>
+                <div class="gallery-img gallery-img--top-right"></div>
+                <div class="gallery-img gallery-img--bottom-right-top"></div>
+                <div class="gallery-img gallery-img--bottom-right-bottom"></div>
+                <div class="gallery-stat-card">
+                    <span class="gallery-stat-star">★</span>
+                    <p class="gallery-stat-number">300+</p>
+                    <p class="gallery-stat-text">Happy Guests</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- TESTIMONIALS & COUNTERS -->
+<div class="kente-stripe"></div>
+<section class="testimonials-section">
+    <div class="testimonials-section__container">
+        <div class="testimonials-carousel">
+            <div class="testimonial-quote">"</div>
+            <p class="testimonial-text">Ghana Stay made our vacation unforgettable. The properties are stunning and prices reasonable.</p>
+            <div class="testimonial-author">
+                <div class="testimonial-avatar"></div>
+                <div>
+                    <p class="testimonial-author-name">Sarah Mensah</p>
+                    <p class="testimonial-author-title">Travel Blogger</p>
+                </div>
+            </div>
+        </div>
+        <div class="counters-strip">
+            <div class="counter-item">
+                <p class="counter-number" data-target="15">15</p>
+                <p class="counter-label">Locations</p>
+            </div>
+            <div class="counter-item">
+                <p class="counter-number" data-target="12">12</p>
+                <p class="counter-label">Years</p>
+            </div>
+            <div class="counter-item">
+                <p class="counter-number" data-target="5000">5000</p>
+                <p class="counter-label">Guests</p>
+            </div>
+            <div class="counter-item">
+                <p class="counter-number" data-target="1200">1200</p>
+                <p class="counter-label">Reviews</p>
+            </div>
+            <div class="counter-item">
+                <p class="counter-number" data-target="8">8</p>
+                <p class="counter-label">Awards</p>
+            </div>
+        </div>
+    </div>
+</section>
+<div class="kente-stripe"></div>
+
+<!-- PERKS BAR -->
+<section class="perks-bar">
+    <div class="perks-bar__container">
+        <div class="perk-item">
+            <div class="perk-icon">✓</div>
+            <div>
+                <h3 class="perk-title">Free Cancellation</h3>
+                <p class="perk-subtitle">Selected stays</p>
+            </div>
+        </div>
+        <div class="perk-item">
+            <div class="perk-icon">⚡</div>
+            <div>
+                <h3 class="perk-title">Fast Internet</h3>
+                <p class="perk-subtitle">100mbps guaranteed</p>
+            </div>
+        </div>
+        <div class="perk-item">
+            <div class="perk-icon">✔</div>
+            <div>
+                <h3 class="perk-title">Easy Verification</h3>
+                <p class="perk-subtitle">Ghana Card or Passport</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- STEAL DEAL -->
+<section class="steal-deal">
+    <div class="steal-deal__container">
+        <div class="steal-deal__card">
+            <div class="steal-deal__image">
+                <span class="steal-deal__badge">Best Deal</span>
+            </div>
+            <div class="steal-deal__details">
+                <span class="steal-deal__label">Steal Deal</span>
+                <h2 class="steal-deal__name">Seaside Luxury Escape</h2>
+                <p class="steal-deal__location">Cape Coast</p>
+                <div class="steal-deal__price">
+                    <span class="price-value">GHS 450</span>
+                    <span class="price-period">/night</span>
+                    <p class="price-note">incl. taxes</p>
+                </div>
+                <div class="steal-deal__specs">
+                    <div class="spec-item">🛏️ 4 Bedrooms</div>
+                    <div class="spec-item">🛌 6 Beds</div>
+                    <div class="spec-item">🚿 3 Baths</div>
+                    <div class="spec-item">🌅 Ocean View</div>
+                </div>
+                <button class="btn btn--primary btn--full">Reserve Now</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- FAQ SECTION -->
+<section class="faq-section" id="faq">
+    <div class="faq-container">
+        <div class="faq-left">
+            <span class="section-tag">Common Queries</span>
+            <h2 class="faq-heading">Got Questions?</h2>
+            <p class="faq-intro">Find answers about bookings and accommodations.</p>
+            <div class="faq-expert-cta">
+                <p>Still confused? Contact our experts.</p>
+                <div class="faq-cta-buttons">
+                    <button class="btn btn--ghost">FAQ</button>
+                    <button class="btn btn--primary">Contact</button>
+                </div>
+            </div>
+        </div>
+        <div class="faq-right">
+            <div class="faq-accordion" id="faq-accordion">
+                <div class="faq-item">
+                    <button class="faq-question"><span>Cancellation policy?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Free cancellation up to 14 days before check-in.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Is breakfast included?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Varies by property. Check during booking.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>How do you verify properties?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>All properties are personally vetted by our team.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>Can I modify bookings?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Yes, subject to availability through your dashboard.</p></div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-question"><span>What payment methods?</span> <span class="faq-icon">+</span></button>
+                    <div class="faq-answer"><p>Cards, mobile money, and bank transfers accepted.</p></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- BLOG SECTION -->
+<section class="blog-section" id="blog">
+    <div class="blog-container">
+        <div class="blog-featured">
+            <div class="blog-featured-image"></div>
+            <div class="blog-featured-content">
+                <span class="blog-category">Destinations</span>
+                <span class="blog-date">March 15</span>
+                <h2 class="blog-featured-title">The Ultimate Guide to Cape Coast</h2>
+                <p class="blog-featured-excerpt">Explore the colonial history, pristine beaches, and vibrant culture.</p>
+                <a href="#" class="blog-read-more">Read More →</a>
+            </div>
+        </div>
+        <div class="blog-grid">
+            <article class="blog-card">
+                <div class="blog-card-image"></div>
+                <span class="blog-card-category">Eco Lodges</span>
+                <span class="blog-card-date">March 12</span>
+                <h3 class="blog-card-title">Volta Region's Best Eco Lodges</h3>
+                <div class="blog-card-author">
+                    <div class="blog-author-avatar"></div>
+                    <p class="blog-author-name">Kwame</p>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-image"></div>
+                <span class="blog-card-category">Hidden Gems</span>
+                <span class="blog-card-date">March 10</span>
+                <h3 class="blog-card-title">Off-the-Beaten-Path Northern Ghana</h3>
+                <div class="blog-card-author">
+                    <div class="blog-author-avatar"></div>
+                    <p class="blog-author-name">Ama</p>
+                </div>
+            </article>
+            <article class="blog-card">
+                <div class="blog-card-image"></div>
+                <span class="blog-card-category">Festivals</span>
+                <span class="blog-card-date">March 8</span>
+                <h3 class="blog-card-title">Where to Stay During Festivals</h3>
+                <div class="blog-card-author">
+                    <div class="blog-author-avatar"></div>
+                    <p class="blog-author-name">Kofi</p>
+                </div>
+            </article>
+        </div>
+        <div class="blog-view-all">
+            <button class="btn btn--ghost">View All Posts</button>
+        </div>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<div class="kente-stripe"></div>
+<footer class="footer">
+    <div class="footer__container">
+        <div class="footer__column">
+            <h4 class="footer__brand">Ghana Stay</h4>
+            <p class="footer__description">Premium accommodations across Ghana with authentic hospitality.</p>
+            <div class="footer__social">
+                <a href="#">f</a>
+                <a href="#">📷</a>
+                <a href="#">🎵</a>
+                <a href="#">𝕏</a>
+            </div>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__heading">About</h4>
+            <ul class="footer__links">
+                <li><a href="#">Our Story</a></li>
+                <li><a href="#">Mission</a></li>
+                <li><a href="#">Team</a></li>
+                <li><a href="#">Awards</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__heading">Accommodations</h4>
+            <ul class="footer__links">
+                <li><a href="#">Rooms</a></li>
+                <li><a href="#">Suites</a></li>
+                <li><a href="#">Themes</a></li>
+                <li><a href="#">Pet-Friendly</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__heading">Amenities</h4>
+            <ul class="footer__links">
+                <li><a href="#">Wi-Fi</a></li>
+                <li><a href="#">Parking</a></li>
+                <li><a href="#">Fitness</a></li>
+                <li><a href="#">Pool</a></li>
+            </ul>
+        </div>
+        <div class="footer__column">
+            <h4 class="footer__heading">Attractions</h4>
+            <ul class="footer__links">
+                <li><a href="#">Landmarks</a></li>
+                <li><a href="#">Dining</a></li>
+                <li><a href="#">Events</a></li>
+                <li><a href="#">Activities</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer__bottom">
+        <p>© 2025 Ghana Stay. All Rights Reserved.</p>
+        <div class="footer__legal">
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <a href="#">Cookies</a>
+        </div>
+    </div>
+</footer>
+
+<!-- MODALS -->
+<div class="modal-overlay" id="newsletter-overlay">
+    <div class="modal newsletter-modal">
+        <button class="modal__close" id="newsletter-close">&times;</button>
+        <h2 class="newsletter-modal__heading">Get Exclusive Deals</h2>
+        <p class="newsletter-modal__body">Subscribe for travel tips and seasonal offers.</p>
+        <form class="newsletter-form" id="newsletter-form">
+            <input type="email" placeholder="Your email" class="form-control" required>
+            <button type="submit" class="btn btn--primary btn--full">Subscribe</button>
+        </form>
+    </div>
+</div>
+
+<script src="js/main.js"></script>
+</body>
+</html>
