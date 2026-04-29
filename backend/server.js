@@ -2,10 +2,15 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import helmet from 'helmet';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import pool from './config/database.js';
 import authRoutes from './routes/auth.js';
 import listingsRoutes from './routes/listings.js';
 import bookingsRoutes from './routes/bookings.js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -16,7 +21,11 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// Serve static files from frontend
+// Serve React static files in production
+const reactDistPath = path.join(__dirname, '../frontend/react-app/dist');
+app.use(express.static(reactDistPath));
+
+// Fallback to old frontend for development
 app.use(express.static('frontend'));
 
 // Test DB connection
@@ -35,8 +44,6 @@ app.get('/health', async (req, res) => {
 app.use('/api/auth', authRoutes);
 app.use('/api/listings', listingsRoutes);
 app.use('/api/bookings', bookingsRoutes);
-
-// Placeholder routes for Airbnb features (removed - implemented in routes/)
 
 // Test DB schema/query
 app.get('/api/test-query', async (req, res) => {
@@ -63,15 +70,25 @@ app.get('/api/test-query', async (req, res) => {
   }
 });
 
+// Serve React app for all non-API routes (SPA fallback)
+app.use((req, res, next) => {
+  // Only serve index.html for non-API routes
+  if (!req.path.startsWith('/api')) {
+    const indexPath = path.join(reactDistPath, 'index.html');
+    res.sendFile(indexPath, (err) => {
+      if (err) {
+        res.status(404).json({ message: 'Route not found' });
+      }
+    });
+  } else {
+    next();
+  }
+});
+
 // Error handler
 app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(500).json({ message: 'Something went wrong!' });
-});
-
-// 404 handler
-app.use((req, res) => {
-  res.status(404).json({ message: 'Route not found' });
 });
 
 const startServer = async () => {

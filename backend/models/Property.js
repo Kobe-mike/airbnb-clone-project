@@ -4,7 +4,7 @@ const Property = {
   async findAll({ location, minPrice, maxPrice, limit = 10, offset = 0 } = {}) {
     try {
       let query = `
-        SELECT id, title, description, location, price, bedrooms, bathrooms, guests, owner_id,
+        SELECT id, title, description, location, price_per_night as price, bedrooms, bathrooms, max_guests as guests, owner_id,
                created_at
         FROM properties 
         WHERE 1=1
@@ -37,7 +37,7 @@ const Property = {
   async findById(id) {
     try {
       const [rows] = await pool.execute(
-        `SELECT id, title, description, location, price, bedrooms, bathrooms, guests, owner_id,
+        `SELECT id, title, description, location, price_per_night as price, bedrooms, bathrooms, max_guests as guests, owner_id,
                 created_at
          FROM properties WHERE id = ?`,
         [id]
@@ -51,7 +51,7 @@ const Property = {
   async create(data, ownerId) {
     try {
       const [result] = await pool.execute(
-        `INSERT INTO properties (title, description, location, price, bedrooms, bathrooms, guests, owner_id)
+        `INSERT INTO properties (title, description, location, price_per_night, bedrooms, bathrooms, max_guests, owner_id)
          VALUES (?, ?, ?, ?, ?, ?, ?, ?)`,
         [data.title, data.description, data.location, data.price, data.bedrooms, data.bathrooms, data.guests, ownerId]
       );

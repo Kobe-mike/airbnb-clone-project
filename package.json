@@ -6,6 +6,10 @@
   "scripts": {
     "dev": "nodemon backend/server.js",
     "start": "node backend/server.js",
+    "dev:react": "cd frontend/react-app && npm run dev",
+    "build:react": "cd frontend/react-app && npm run build",
+    "dev:full": "concurrently \"npm run dev\" \"npm run dev:react\"",
+    "build:full": "npm run build:react",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -33,6 +37,7 @@
     "validator": "^13.15.35"
   },
   "devDependencies": {
-    "nodemon": "^3.1.14"
+    "nodemon": "^3.1.14",
+    "concurrently": "^8.2.2"
   }
 }

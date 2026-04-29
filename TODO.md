@@ -1,14 +1,16 @@
-# Landing Page Implementation TODO
+# Thorough Testing & Fixes TODO
 
-## Plan Steps
-- [x] Create frontend/client/index.html (HTML structure with map)
-- [x] Complete frontend/client/css/style.css (Airbnb-inspired styles: reset, nav, hero/map, footer, responsive)
-- [x] Create frontend/client/js/main.js (Leaflet map centered on Accra + 5-7 mock property markers/popups)
-- [ ] Add placeholder logo to frontend/client/assets/images/logo.png (simple SVG/text) [skipped]
-- [ ] Redesign index.html (add search bar, property cards grid, map toggle/sidebar)
-- [ ] Update style.css (glassmorphism transparent theme, grid layouts, small map)
-- [ ] Update main.js (Ghana bounds only, no mocks, API fetch ready)
-- [ ] Test redesigned page
-- [ ] Backend API for admin properties (/api/listings)
+## Current Status
+- [x] Fixed duplicate Vite processes
+- [x] React dev server running clean (5173)
+- [x] Backend running (3000)
+- [x] Identified DB schema mismatch
 
-Progress: Implementing video-inspired dark premium design (dark hero with play, 2x2 cards, sidebar map/thumbnails, glassmorphism)
+## Pending Steps
+- [ ] 1. Fix backend/models/Property.js column names (price → price_per_night, guests → max_guests)
+- [ ] 2. Check other models (Booking.js, User.js) for schema alignment
+- [ ] 3. Restart backend server
+- [ ] 4. Test all API endpoints (listings, auth, bookings)
+- [ ] 5. Test frontend flows (HomePage listings, AuthPage)
+- [ ] 6. Security vulnerability scan & fixes (bcryptjs vuln)
+- [ ] 7. Update TODO with results
