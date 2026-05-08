@@ -5,7 +5,7 @@ const User = {
   async findById(id) {
     try {
       const [rows] = await pool.execute(
-        'SELECT id, name, email FROM users WHERE id = ?',
+        'SELECT id, username, email, first_name, last_name FROM users WHERE id = ?',
         [id]
       );
       return rows[0] || null;
@@ -17,7 +17,7 @@ const User = {
   async findByEmail(email) {
     try {
       const [rows] = await pool.execute(
-        'SELECT id, name, email, password_hash FROM users WHERE email = ?',
+        'SELECT id, username, email, password FROM users WHERE email = ?',
         [email]
       );
       return rows[0] || null;
@@ -29,9 +29,14 @@ const User = {
   async create({ name, email, password }) {
     try {
       const hashedPassword = await bcrypt.hash(password, 12);
+      // Split name into first_name and last_name if possible
+      const nameParts = name.split(' ');
+      const firstName = nameParts[0];
+      const lastName = nameParts.slice(1).join(' ') || '';
+      
       const [result] = await pool.execute(
-        'INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)',
-        [name, email, hashedPassword]
+        'INSERT INTO users (username, email, password, first_name, last_name) VALUES (?, ?, ?, ?, ?)',
+        [email, email, hashedPassword, firstName, lastName]
       );
       return { id: result.insertId, name, email };
     } catch (error) {
