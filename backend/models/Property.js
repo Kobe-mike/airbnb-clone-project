@@ -4,8 +4,8 @@ const Property = {
   async findAll({ location, minPrice, maxPrice, limit = 10, offset = 0 } = {}) {
     try {
       let query = `
-        SELECT id, title, description, location, price_per_night as price, bedrooms, bathrooms, max_guests as guests, owner_id,
-               created_at
+        SELECT id, title, description, location, price_per_night, property_type, bedrooms, bathrooms, max_guests, 
+               rating, reviews_count, owner_id, created_at
         FROM properties 
         WHERE 1=1
       `;
@@ -16,11 +16,11 @@ const Property = {
         params.push(`%${location}%`);
       }
       if (minPrice) {
-        query += ' AND price >= ?';
+        query += ' AND price_per_night >= ?';
         params.push(minPrice);
       }
       if (maxPrice) {
-        query += ' AND price <= ?';
+        query += ' AND price_per_night <= ?';
         params.push(maxPrice);
       }
 
@@ -37,8 +37,8 @@ const Property = {
   async findById(id) {
     try {
       const [rows] = await pool.execute(
-        `SELECT id, title, description, location, price_per_night as price, bedrooms, bathrooms, max_guests as guests, owner_id,
-                created_at
+        `SELECT id, title, description, location, price_per_night, property_type, bedrooms, bathrooms, max_guests,
+                rating, reviews_count, owner_id, created_at
          FROM properties WHERE id = ?`,
         [id]
       );

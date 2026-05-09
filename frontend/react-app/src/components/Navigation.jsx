@@ -22,15 +22,15 @@ export default function Navigation() {
             <span></span><span></span><span></span>
           </button>
           <ul className="navbar__links">
-            <li><a href="#home">Home</a></li>
+            <li><Link to="/">Home</Link></li>
             <li><a href="#about">About Us</a></li>
             <li className="navbar__dropdown-item">
-              <a href="#stays">Stays</a>
+              <Link to="/bookings">Stays</Link>
               <ul className="navbar__dropdown">
+                <li><Link to="/bookings">All Stays</Link></li>
                 <li><a href="#">Rooms</a></li>
                 <li><a href="#">Villas</a></li>
-                <li><a href="#">Chalets</a></li>
-                <li><a href="#">Eco Lodges</a></li>
+                <li><a href="#">Cabins</a></li>
                 <li><a href="#">Heritage</a></li>
               </ul>
             </li>
@@ -71,9 +71,9 @@ export default function Navigation() {
             &times;
           </button>
           <ul className="navbar__drawer-links">
-            <li><a href="#home" onClick={() => setDrawerOpen(false)}>Home</a></li>
+            <li><Link to="/" onClick={() => setDrawerOpen(false)}>Home</Link></li>
             <li><a href="#about" onClick={() => setDrawerOpen(false)}>About Us</a></li>
-            <li><a href="#stays" onClick={() => setDrawerOpen(false)}>Stays</a></li>
+            <li><Link to="/bookings" onClick={() => setDrawerOpen(false)}>Stays</Link></li>
             <li><a href="#services" onClick={() => setDrawerOpen(false)}>Services</a></li>
             <li><a href="#pricing" onClick={() => setDrawerOpen(false)}>Pricing</a></li>
             {isAuthenticated ? (

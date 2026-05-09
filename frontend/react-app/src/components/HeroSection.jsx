@@ -1,10 +1,12 @@
 import { useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function HeroSection({ onExploreClick }) {
   const scrollCueRef = useRef(null);
+  const navigate = useNavigate();
 
   const handleScroll = () => {
-    document.querySelector('.property-grid-section')?.scrollIntoView({ behavior: 'smooth' });
+    navigate('/bookings');
   };
 
   return (
@@ -21,7 +23,7 @@ export default function HeroSection({ onExploreClick }) {
           <p className="hero__subheadline">Discover premium accommodations across Ghana, from beachfront retreats to heritage hotels</p>
           <div className="hero__buttons">
             <button className="btn btn--primary" onClick={handleScroll}>Explore Stays</button>
-            <button className="btn btn--ghost">Log In</button>
+            <button className="btn btn--ghost" onClick={() => navigate('/auth')}>Log In</button>
           </div>
         </div>
         <div className="hero__scroll-cue" ref={scrollCueRef} onClick={handleScroll}>
@@ -30,15 +32,15 @@ export default function HeroSection({ onExploreClick }) {
           </svg>
         </div>
       </div>
-      <BookingWidget />
+      <BookingWidget navigate={navigate} />
     </section>
   );
 }
 
-function BookingWidget() {
+function BookingWidget({ navigate }) {
   const handleSubmit = (e) => {
     e.preventDefault();
-    document.querySelector('.property-grid-section')?.scrollIntoView({ behavior: 'smooth' });
+    navigate('/bookings');
   };
 
   return (

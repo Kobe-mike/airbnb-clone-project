@@ -8,12 +8,17 @@ const listingController = {
       const offset = (page - 1) * limit;
       const listings = await Property.findAll({ 
         location, 
-        minPrice: parseFloat(minPrice), 
-        maxPrice: parseFloat(maxPrice), 
+        minPrice: parseFloat(minPrice) || 0, 
+        maxPrice: parseFloat(maxPrice) || 10000, 
         limit: parseInt(limit), 
         offset 
       });
-      res.json({ listings, page: parseInt(page), limit: parseInt(limit) });
+      res.json({ 
+        data: listings, 
+        page: parseInt(page), 
+        limit: parseInt(limit),
+        total: listings.length
+      });
     } catch (error) {
       res.status(500).json({ message: error.message });
     }

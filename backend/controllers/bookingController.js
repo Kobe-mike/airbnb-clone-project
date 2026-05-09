@@ -19,13 +19,7 @@ const bookingController = {
         return res.status(404).json({ message: 'Property not found' });
       }
 
-      // Simple availability check: no overlapping bookings (implement properly with query)
-      const overlapping = await Booking.findOverlapping(listingId, checkIn, checkOut);
-      if (overlapping.length > 0) {
-        return res.status(400).json({ message: 'Property not available for selected dates' });
-      }
-
-      if (guests > property.guests) {
+      if (guests > property.max_guests) {
         return res.status(400).json({ message: 'Too many guests for this property' });
       }
 
@@ -34,8 +28,7 @@ const bookingController = {
         user_id: userId,
         check_in: checkIn,
         check_out: checkOut,
-        guests,
-        status: 'confirmed'
+        guests
       });
 
       res.status(201).json({ id: bookingId, message: 'Booking created successfully' });
