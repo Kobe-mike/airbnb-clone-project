@@ -5,6 +5,14 @@ import '../styles/admin.css';
 
 function AdminLayout({ children }) {
   const [sidebarOpen, setSidebarOpen] = useState(true);
+  const [expandedMenus, setExpandedMenus] = useState({
+    overview: false,
+    catalog: false,
+    sales: false,
+    customers: false,
+    promotions: false,
+    system: false,
+  });
   const location = useLocation();
   const navigate = useNavigate();
   const { logout, auth } = useAuth();
@@ -16,16 +24,70 @@ function AdminLayout({ children }) {
     navigate('/auth');
   };
 
+  const toggleMenu = (menu) => {
+    setExpandedMenus(prev => ({
+      ...prev,
+      [menu]: !prev[menu]
+    }));
+  };
+
   const menuItems = [
-    { icon: '📊', label: 'Overview', path: '/admin' },
-    { icon: '📈', label: 'Dashboard', path: '/admin/dashboard' },
-    { icon: '📑', label: 'Catalog', path: '/admin/catalog' },
-    { icon: '💰', label: 'Sales', path: '/admin/sales' },
-    { icon: '👥', label: 'Customers', path: '/admin/customers' },
-    { icon: '🎁', label: 'Promotions', path: '/admin/promotions' },
-    { icon: '📄', label: 'Reports', path: '/admin/reports' },
-    { icon: '⚙️', label: 'System', path: '/admin/system' },
-    { icon: '❓', label: 'Help', path: '/admin/help' },
+    {
+      icon: '📊',
+      label: 'Overview',
+      key: 'overview',
+      path: '/admin',
+      submenu: [
+        { label: 'Dashboard', path: '/admin/dashboard' },
+        { label: 'Reports', path: '/admin/reports' },
+      ]
+    },
+    {
+      icon: '📑',
+      label: 'Catalog',
+      key: 'catalog',
+      submenu: [
+        { label: 'Categories', path: '/admin/categories' },
+        { label: 'Properties', path: '/admin/properties' },
+      ]
+    },
+    {
+      icon: '💰',
+      label: 'Sales',
+      key: 'sales',
+      submenu: [
+        { label: 'Bookings', path: '/admin/bookings' },
+        { label: 'Payments', path: '/admin/payments' },
+      ]
+    },
+    {
+      icon: '👥',
+      label: 'Customers',
+      key: 'customers',
+      submenu: [
+        { label: 'Users', path: '/admin/users' },
+        { label: 'Reviews', path: '/admin/reviews' },
+      ]
+    },
+    {
+      icon: '🎁',
+      label: 'Promotions',
+      key: 'promotions',
+      submenu: [
+        { label: 'Campaigns', path: '/admin/promotions/campaigns' },
+        { label: 'Discount Codes', path: '/admin/promotions/codes' },
+      ]
+    },
+    {
+      icon: '⚙️',
+      label: 'System',
+      key: 'system',
+      submenu: [
+        { label: 'Request History', path: '/admin/system/requests' },
+        { label: 'Activity Log', path: '/admin/system/activity' },
+        { label: 'Social Links', path: '/admin/system/social' },
+      ]
+    },
   ];
 
   return (
@@ -58,15 +120,48 @@ function AdminLayout({ children }) {
 
         <nav className="sidebar-nav">
           {menuItems.map((item) => (
-            <Link
-              key={item.path}
-              to={item.path}
-              className={`nav-item ${isActive(item.path)}`}
-              title={!sidebarOpen ? item.label : ''}
-            >
-              <span className="nav-icon">{item.icon}</span>
-              {sidebarOpen && <span className="nav-label">{item.label}</span>}
-            </Link>
+            <div key={item.key} className="nav-dropdown">
+              {item.submenu ? (
+                <>
+                  <button
+                    className={`nav-dropdown-toggle ${expandedMenus[item.key] ? 'expanded' : ''} ${
+                      item.submenu.some(sub => isActive(sub.path)) ? 'active' : ''
+                    }`}
+                    onClick={() => toggleMenu(item.key)}
+                    title={!sidebarOpen ? item.label : ''}
+                  >
+                    <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                      <span className="nav-icon">{item.icon}</span>
+                      {sidebarOpen && <span className="nav-label">{item.label}</span>}
+                    </div>
+                    {sidebarOpen && <span className="dropdown-arrow">▼</span>}
+                  </button>
+                  {sidebarOpen && (
+                    <ul className={`dropdown-menu ${expandedMenus[item.key] ? 'open' : ''}`}>
+                      {item.submenu.map((subitem) => (
+                        <li key={subitem.path}>
+                          <Link
+                            to={subitem.path}
+                            className={`dropdown-item ${isActive(subitem.path)}`}
+                          >
+                            {subitem.label}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </>
+              ) : (
+                <Link
+                  to={item.path}
+                  className={`nav-item ${isActive(item.path)}`}
+                  title={!sidebarOpen ? item.label : ''}
+                >
+                  <span className="nav-icon">{item.icon}</span>
+                  {sidebarOpen && <span className="nav-label">{item.label}</span>}
+                </Link>
+              )}
+            </div>
           ))}
         </nav>
 
