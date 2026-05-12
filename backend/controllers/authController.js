@@ -21,7 +21,7 @@ const authController = {
       const token = jwt.sign(
         { id: newUser.id, email: newUser.email },
         jwtConfig.secret,
-        jwtConfig.options
+        jwtConfig.signOptions
       );
 
       res.status(201).json({
@@ -50,7 +50,7 @@ const authController = {
       const token = jwt.sign(
         { id: user.id, email: user.email },
         jwtConfig.secret,
-        jwtConfig.options
+        jwtConfig.signOptions
       );
 
       res.json({

@@ -1,16 +1,26 @@
 import rateLimit from 'express-rate-limit';
 
+const baseRateLimitConfig = {
+  standardHeaders: true,
+  legacyHeaders: false
+};
+
 const limiter = rateLimit({
+  ...baseRateLimitConfig,
   windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100, // limit each IP to 100 requests per windowMs
+  max: 100,
   message: {
     message: 'Too many requests from this IP, please try again later.'
   },
-  standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-  legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-  skip: (req) => {
-    // Skip rate limiting for health check
-    return req.path === '/health';
+  skip: (req) => req.path === '/health'
+});
+
+export const authLimiter = rateLimit({
+  ...baseRateLimitConfig,
+  windowMs: 15 * 60 * 1000,
+  max: 10,
+  message: {
+    message: 'Too many authentication attempts. Please try again later.'
   }
 });
 

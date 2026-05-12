@@ -3,17 +3,25 @@ import jwtConfig from '../config/jwt.js';
 
 const authMiddleware = (req, res, next) => {
   try {
-    const token = req.header('Authorization')?.replace('Bearer ', '');
+    const authHeader = req.header('Authorization');
 
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ message: 'Access denied. No token provided.' });
+    }
+
+    const token = authHeader.slice(7).trim();
     if (!token) {
       return res.status(401).json({ message: 'Access denied. No token provided.' });
     }
 
-    const decoded = jwt.verify(token, jwtConfig.secret, jwtConfig.options);
-    req.user = decoded; // Attach user to req (id, email etc.)
+    const decoded = jwt.verify(token, jwtConfig.secret, jwtConfig.verifyOptions);
+    req.user = decoded;
     next();
   } catch (error) {
-    res.status(400).json({ message: 'Invalid token.' });
+    if (error.name === 'TokenExpiredError') {
+      return res.status(401).json({ message: 'Token expired.' });
+    }
+    return res.status(401).json({ message: 'Invalid token.' });
   }
 };
 

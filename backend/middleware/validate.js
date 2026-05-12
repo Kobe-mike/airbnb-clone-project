@@ -37,10 +37,20 @@ export const createBookingSchema = Joi.object({
 });
 
 const validateMiddleware = (schema) => (req, res, next) => {
-  const { error } = schema.validate(req.body);
+  const { error, value } = schema.validate(req.body, {
+    abortEarly: false,
+    allowUnknown: false,
+    stripUnknown: true
+  });
+
   if (error) {
-    return res.status(400).json({ message: error.details[0].message });
+    return res.status(400).json({
+      message: 'Validation failed',
+      errors: error.details.map((detail) => detail.message)
+    });
   }
+
+  req.body = value;
   next();
 };
 

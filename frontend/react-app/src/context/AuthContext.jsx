@@ -1,17 +1,18 @@
 import { createContext, useState, useContext, useEffect } from 'react';
 import { authService } from '../services/api';
+import { tokenStorage } from '../services/apiClient';
 
 const AuthContext = createContext();
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [token, setToken] = useState(localStorage.getItem('authToken'));
+  const [token, setToken] = useState(() => tokenStorage.get());
 
   // Check if user is logged in on mount
   useEffect(() => {
     const checkAuth = async () => {
-      const savedToken = localStorage.getItem('authToken');
+      const savedToken = tokenStorage.get();
       if (savedToken) {
         try {
           setToken(savedToken);
@@ -19,7 +20,7 @@ export function AuthProvider({ children }) {
           setUser(response.data.user);
         } catch (error) {
           console.error('Auth check failed:', error);
-          localStorage.removeItem('authToken');
+          tokenStorage.clear();
           setToken(null);
         }
       }
@@ -32,7 +33,7 @@ export function AuthProvider({ children }) {
   const login = async (email, password) => {
     const response = await authService.login(email, password);
     const { token, user } = response.data;
-    localStorage.setItem('authToken', token);
+    tokenStorage.set(token);
     setToken(token);
     setUser(user);
     return response.data;
@@ -41,7 +42,7 @@ export function AuthProvider({ children }) {
   const register = async (name, email, password) => {
     const response = await authService.register(name, email, password);
     const { token, user } = response.data;
-    localStorage.setItem('authToken', token);
+    tokenStorage.set(token);
     setToken(token);
     setUser(user);
     return response.data;
